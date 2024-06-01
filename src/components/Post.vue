@@ -9,8 +9,10 @@
         </template>
         <template #append>
             <div class="d-flex ga-3">
-                <v-btn density="comfortable" variant="plain" icon="fas fa-pen" size="small"></v-btn>
-                <v-btn density="comfortable" variant="plain" icon="fas fa-trash" size="small"></v-btn>
+                <v-btn density="comfortable" variant="plain" icon="fas fa-pen" size="small"
+                    @click="$emit('update', 1)"></v-btn>
+                <v-btn density="comfortable" variant="plain" icon="fas fa-trash" size="small"
+                    @click="$emit('delete', 1)"></v-btn>
             </div>
         </template>
     </v-card>
