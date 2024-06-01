@@ -5,9 +5,9 @@ import PostList from './components/PostList.vue'
 <template>
   <v-app>
     <v-container>
-      <PostList msg="Vite + Vue" />
+      <PostList>
+
+      </PostList>
     </v-container>
   </v-app>
 </template>
-
-
