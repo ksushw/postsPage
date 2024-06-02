@@ -1,10 +1,22 @@
+<script setup lang="ts">
+
+interface Props {
+    post: {
+        "userId": number,
+        "id": number,
+        "title": string,
+        "body": string
+    }
+}
+
+const props = defineProps<Props>()
+</script>
+
 <template>
-    <v-card :title="'Item'">
+    <v-card :title="props.post.title">
         <template #text>
             <div class="mt-2">
-                quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut
-                ut
-                quas totam\nnostrum rerum est autem sunt rem eveniet architecto
+                {{ props.post.body }}
             </div>
         </template>
         <template #append>

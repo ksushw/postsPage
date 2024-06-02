@@ -1,19 +1,24 @@
-<script setup>
-import { ref } from 'vue'
-import Post from './Post.vue'
+<script setup lang="ts">
 
-const handleUpdatePost = (id) => {
+import Post from './Post.vue'
+import { posts } from '../mocs/posts'
+
+const handleUpdatePost = (id: number) => {
     console.log(`update ${id} post`)
 }
 
-const handleDeletePost = (id) => {
+const handleDeletePost = (id: number) => {
     console.log(`delete ${id} post`)
 }
+
+
 </script>
 
 <template>
     <div no-gutters class="pa-6 bg-cyan-lighten-5 rounded-lg elevation-5 ga-4 container-grid">
-        <Post :elevation="6" v-for="n in 6" :key="n" @update="handleUpdatePost" @delete="handleDeletePost" />;
+        <Post v-for="post in posts" :post="post" :elevation="6" :key="post.id" @update="handleUpdatePost"
+            @delete="handleDeletePost" />
+        ;
     </div>
 </template>
 
