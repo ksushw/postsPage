@@ -4,7 +4,7 @@ import PostList from './components/PostList.vue';
 
 <template>
   <v-app>
-    <v-container>
+    <v-container class="h-screen">
       <PostList />
     </v-container>
   </v-app>
