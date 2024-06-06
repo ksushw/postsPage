@@ -1,0 +1,31 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+
+interface Props {
+    id: number
+}
+const props = defineProps<Props>();
+
+const emit = defineEmits<{
+    submitFormChange: [title: string, text: string];
+}>();
+
+</script>
+
+<template>
+    <v-card title="Удаление поста" class="pa-4 rounded-m">
+        <v-sheet class="mx-auto" width="400">
+            <v-form fast-fail @submit.prevent class="pa-5">
+                <div class="text-h6">Вы действительно хотите удалить пост?</div>
+                <div class="d-lg-flex justify-space-around ga-3">
+                    <v-btn class="mt-2 flex-1-1-100" type="submit" @click="">
+                        Отмена
+                    </v-btn>
+                    <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" @click="">
+                        Удалить
+                    </v-btn>
+                </div>
+            </v-form>
+        </v-sheet>
+    </v-card>
+</template>
