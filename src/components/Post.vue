@@ -12,7 +12,7 @@ const props = defineProps<Props>();
 </script>
 
 <template>
-  <v-card :title="props.post.title">
+  <v-card :title="props.post.title" min-height="300">
     <template #text>
       <div class="mt-2">
         {{ props.post.body }}
