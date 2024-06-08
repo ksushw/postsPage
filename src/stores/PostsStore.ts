@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { IPost } from '../types/post';
 
@@ -9,8 +9,17 @@ const usePostsStore = defineStore('posts', () => {
     posts.value = newPosts;
   };
 
-  const putPost = (post: IPost) => {
-    posts.value = [...posts.value, post];
+  const putPost = (newPost: IPost) => {
+    posts.value = [...posts.value, newPost];
+  };
+
+  const patch = (newPost: IPost) => {
+    posts.value = [...posts.value].map((post) => {
+      if (post.id === newPost.id) {
+        return newPost;
+      }
+      return post;
+    });
   };
 
   const deletePost = (id: number) => {
@@ -18,7 +27,7 @@ const usePostsStore = defineStore('posts', () => {
     posts.value = newPosts;
   };
 
-  return { posts, addPosts, putPost, deletePost };
+  return { posts, addPosts, putPost, deletePost, patch };
 });
 
 export { usePostsStore };

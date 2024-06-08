@@ -13,7 +13,6 @@ const props = defineProps<Props>();
 
 const handleSubmitForm = async (id: number, isActive: any) => {
   const result = await deletePost(id);
-
   store.deletePost(id)
   isActive.value = false;
 };

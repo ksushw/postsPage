@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Post from './Post.vue';
-import { onMounted, ref } from 'vue';
+import { onMounted } from 'vue';
 import UpdatePost from './ModalUpdatePost.vue';
 import CreatePost from './ModalCreatePost.vue';
 import DeletePost from './ModalDeletePost.vue';
