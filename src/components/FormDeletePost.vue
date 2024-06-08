@@ -1,8 +1,12 @@
 <script setup lang="ts">
-  interface Props {
-    id: number;
-  }
-  const props = defineProps<Props>();
+interface Props {
+  id: number;
+}
+const props = defineProps<Props>();
+
+const emit = defineEmits<{
+  submit: [id: number];
+}>();
 </script>
 
 <template>
@@ -14,10 +18,7 @@
           <v-btn class="mt-2 flex-1-1-100" type="submit" @click="">
             Отмена
           </v-btn>
-          <v-btn
-            class="mt-2 flex-1-1-100 bg-red-darken-2"
-            type="submit"
-            @click="">
+          <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" @click="$emit('submit', props.id)">
             Удалить
           </v-btn>
         </div>

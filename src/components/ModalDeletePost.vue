@@ -1,12 +1,15 @@
 <script setup lang="ts">
   import FormDeletePost from './FormDeletePost.vue';
+  import { deletePost } from '../api/postApi';
+
   interface Props {
     id: number;
   }
   const props = defineProps<Props>();
 
-  const handleSubmitForm = (title: string, text: string) => {
-    console.log(title, text);
+  const handleSubmitForm = (id: number, isActive: any) => {
+    deletePost(id);
+    isActive.value = false;
   };
 </script>
 
@@ -28,7 +31,9 @@
           class="position-absolute top-0 right-0 ma-2"
           @click="isActive.value = false"
           style="z-index: 1" />
-        <FormDeletePost :id="1" />
+        <FormDeletePost
+          :id="1"
+          @submit="(id) => handleSubmitForm(id, isActive)" />
       </div>
     </template>
   </v-dialog>

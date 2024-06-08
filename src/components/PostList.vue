@@ -12,23 +12,26 @@ const testData = ref<any>()
 
 onMounted(async () => {
   posts.value = await getPosts();
-  testData.value = await updatePost(posts.value[1])
-  console.log(testData.value)
 })
 
-const handleUpdatePost = (id: number) => {
-  console.log(`update ${id} post`);
-};
+// const handleUpdatePost = (id: number) => {
+//   console.log(`update ${id} post`);
+// };
 
-const handleDeletePost = (id: number) => {
-  console.log(`delete ${id} post`);
-};
+// const handleDeletePost = (id: number) => {
+//   console.log(`delete ${id} post`);
+// };
 const isOpen = ref(false);
 
-const closeModal = (): void => {
-  isOpen.value = !isOpen.value;
-};
+// const closeModal = (): void => {
+//   isOpen.value = !isOpen.value;
+// };
 
+const postTemplate = {
+  userId: 1,
+  title: '',
+  body: '',
+}
 
 
 </script>
@@ -36,11 +39,10 @@ const closeModal = (): void => {
 <template>
   <div class="bg-cyan-lighten-5 rounded-lg elevation-5 mt-5 mb-5 h-100 overflow-hidden">
     <div class="d-flex justify-end pa-5">
-      <CreatePost />
+      <CreatePost :post="postTemplate" />
     </div>
     <div no-gutters class="pa-6 ga-4 container-grid overflow-auto ">
-      <Post v-for="post in posts" :post="post" :elevation="6" :key="post.id" @closeModal="handleUpdatePost"
-        @delete="handleDeletePost">
+      <Post v-for="post in posts" :post="post" :elevation="6" :key="post.id">
         <template #controllerButtons>
           <UpdatePost :post="post" />
           <DeletePost :id="1" />
