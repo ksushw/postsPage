@@ -3,6 +3,9 @@ import { ref } from 'vue';
 import { IPost } from '../types/post';
 import FormCreatePost from './FormCreatePost.vue';
 import { createPost } from '../api/postApi';
+import { usePostsStore } from '../stores/PostsStore.ts';
+
+const store = usePostsStore();
 
 interface Props {
   post: IPost;
@@ -13,11 +16,9 @@ const postData = ref(props.post);
 
 const handleSubmitForm = async (post: IPost, isActive: any) => {
   const newPost = await createPost(post);
-  console.log(isActive)
-  isActive.value = false
+  store.putPost(newPost)
+  isActive.value = false;
 };
-
-
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const handleSubmitForm = async (post: IPost, isActive: any) => {
       <div class="position-relative">
         <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2"
           @click="isActive.value = false" style="z-index: 1" />
-        <FormCreatePost formName="Создать пост" :post='postData' buttonText="Создать"
+        <FormCreatePost formName="Создать пост" :post="postData" buttonText="Создать"
           @submit="(post) => handleSubmitForm(post, isActive)"></FormCreatePost>
       </div>
     </template>

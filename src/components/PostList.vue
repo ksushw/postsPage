@@ -1,51 +1,37 @@
 <script setup lang="ts">
 import Post from './Post.vue';
-import { IPost } from '../types/post';
-import { ref, reactive, onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import UpdatePost from './ModalUpdatePost.vue';
 import CreatePost from './ModalCreatePost.vue';
 import DeletePost from './ModalDeletePost.vue';
-import { getPosts, createPost, deletePost, updatePost } from '../api/postApi'
+import { getPosts } from '../api/postApi';
+import { usePostsStore } from '../stores/PostsStore.ts';
 
-const posts = ref<IPost[]>([])
-const testData = ref<any>()
+const store = usePostsStore();
 
 onMounted(async () => {
-  posts.value = await getPosts();
-})
-
-// const handleUpdatePost = (id: number) => {
-//   console.log(`update ${id} post`);
-// };
-
-// const handleDeletePost = (id: number) => {
-//   console.log(`delete ${id} post`);
-// };
-const isOpen = ref(false);
-
-// const closeModal = (): void => {
-//   isOpen.value = !isOpen.value;
-// };
+  const postsData = await getPosts();
+  store.addPosts(postsData);
+});
 
 const postTemplate = {
   userId: 1,
   title: '',
   body: '',
-}
-
-
+  id: 1,
+};
 </script>
 
 <template>
-  <div class="bg-cyan-lighten-5 rounded-lg elevation-5 mt-5 mb-5 h-100 overflow-hidden">
+  <div class="bg-cyan-lighten-5 rounded-lg elevation-5 mt-5 mb-5 h-100 overflow-auto">
     <div class="d-flex justify-end pa-5">
       <CreatePost :post="postTemplate" />
     </div>
-    <div no-gutters class="pa-6 ga-4 container-grid overflow-auto ">
-      <Post v-for="post in posts" :post="post" :elevation="6" :key="post.id">
+    <div no-gutters class="pa-6 ga-4 container-grid ">
+      <Post v-for="post in store.posts" :post="post" :elevation="6" :key="post.id">
         <template #controllerButtons>
           <UpdatePost :post="post" />
-          <DeletePost :id="1" />
+          <DeletePost :id="post.id" />
         </template>
       </Post>
     </div>
