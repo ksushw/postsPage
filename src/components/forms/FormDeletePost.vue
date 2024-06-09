@@ -5,8 +5,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  (e: 'submit', id: number): void
-  (e: 'cancel'): void
+  (e: 'submit', id: number): void;
+  (e: 'cancel'): void;
 }>();
 </script>
 

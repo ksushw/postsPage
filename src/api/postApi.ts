@@ -1,7 +1,8 @@
+import { AxiosResponse } from 'axios';
 import { instance } from './axios';
 import { IPost } from '../types/post';
 
-const createPost = async (post: IPost) => {
+const createPost = async (post: IPost): Promise<IPost> => {
   return instance
     .post('/posts', {
       userId: post.userId,
@@ -13,7 +14,7 @@ const createPost = async (post: IPost) => {
     });
 };
 
-const getPosts = async () => {
+const getPosts = async (): Promise<IPost[]> => {
   return instance
     .get('/posts')
     .then(function (response) {
@@ -24,7 +25,7 @@ const getPosts = async () => {
     });
 };
 
-const updatePost = async (post: IPost) => {
+const updatePost = async (post: IPost): Promise<IPost> => {
   return instance
     .patch(`/posts/${post.id}`, {
       title: post.title,
@@ -35,7 +36,7 @@ const updatePost = async (post: IPost) => {
     });
 };
 
-const deletePost = async (id: number) => {
+const deletePost = async (id: number): Promise<{}> => {
   return instance.delete(`/posts/${id}`).then(function (response) {
     return response.data;
   });
