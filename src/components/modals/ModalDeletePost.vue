@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import FormDeletePost from './FormDeletePost.vue';
-import { deletePost } from '../api/postApi';
+import FormDeletePost from '../forms/FormDeletePost.vue';
+import { deletePost } from '../../api/postApi';
 
-import { usePostsStore } from '../stores/PostsStore.ts';
+import { usePostsStore } from '../../stores/postsStore';
 
 const store = usePostsStore();
 

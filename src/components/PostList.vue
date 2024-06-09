@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import Post from './Post.vue';
 import { onMounted } from 'vue';
-import UpdatePost from './ModalUpdatePost.vue';
-import CreatePost from './ModalCreatePost.vue';
-import DeletePost from './ModalDeletePost.vue';
+import UpdatePost from './modals/ModalUpdatePost.vue';
+import CreatePost from './modals/ModalCreatePost.vue';
+import DeletePost from './modals/ModalDeletePost.vue';
 import { getPosts } from '../api/postApi';
-import { usePostsStore } from '../stores/PostsStore.ts';
+import { usePostsStore } from '../stores/postsStore.ts';
 
 const store = usePostsStore();
 

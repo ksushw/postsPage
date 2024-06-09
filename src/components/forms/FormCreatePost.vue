@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { IPost } from '../types/post';
+import { IPost } from '../../types/post';
 
 interface Props {
   post: IPost;

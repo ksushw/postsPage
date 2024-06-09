@@ -7,8 +7,6 @@ import { aliases, fa } from 'vuetify/iconsets/fa';
 import { createPinia } from 'pinia';
 // Components
 import { createApp } from 'vue';
-
-import './style.css';
 import App from './App.vue';
 
 const vuetify = createVuetify({
