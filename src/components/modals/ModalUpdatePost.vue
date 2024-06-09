@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import FormCreatePost from '../forms/FormCreatePost.vue';
+import FormCreate from '../forms/FormCreate.vue';
 import { IPost } from '../../types/post';
 import { usePostsStore } from '../../stores/postsStore';
 import { ref } from 'vue';
@@ -32,8 +32,8 @@ const handleSubmitForm = async (post: IPost) => {
       <div class="position-relative">
         <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2" @click="modal = false"
           style="z-index: 1" />
-        <FormCreatePost formName="Редактировать пост" :post="props.post" buttonText="Изменить" :loading="isLoading"
-          @submit="(post) => handleSubmitForm(post)"></FormCreatePost>
+        <FormCreate formName="Редактировать пост" :post="props.post" buttonText="Изменить" :loading="isLoading"
+          @submit="(post) => handleSubmitForm(post)" />
       </div>
     </template>
   </v-dialog>

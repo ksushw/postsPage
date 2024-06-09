@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Props {
   id: number;
   loading: boolean
@@ -9,6 +11,10 @@ const emit = defineEmits<{
   (e: 'submit', id: number): void;
   (e: 'cancel'): void;
 }>();
+
+const isDisabled = computed(() => {
+  return props.loading ? 'disabled' : ''
+})
 </script>
 
 <template>
@@ -17,10 +23,10 @@ const emit = defineEmits<{
       <v-form fast-fail @submit.prevent class="pa-5">
         <div class="text-h6">Вы действительно хотите удалить пост?</div>
         <div class="d-lg-flex justify-space-around ga-3">
-          <v-btn class="mt-2 flex-1-1-100" type="submit" @click="$emit('cancel')">
+          <v-btn class="mt-2 flex-1-1-100" type="submit" @click="$emit('cancel')" isDisabled>
             Отмена
           </v-btn>
-          <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" :loading="loading"
+          <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" :loading="loading" isDisabled
             @click="$emit('submit', props.id)">
             Удалить
           </v-btn>
