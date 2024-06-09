@@ -24,7 +24,7 @@ const postTemplate = {
     <div class="d-flex justify-end pa-5">
       <CreatePost :post="postTemplate" />
     </div>
-    <v-list lines="one" overflow-auto class='list pt-17 pr-3 pl-2' style="height: calc(100% - 76px)">
+    <v-list lines="one" overflow-auto class='list pt-17 pr-3 pl-3' style="height: calc(100% - 76px)">
       <Post v-for="(post, index) in store.posts" :post="post" :index="index" :key="post.id" class="mb-4">
         <template #controllerButtons>
           <UpdatePost :post="post" />
@@ -39,6 +39,7 @@ const postTemplate = {
 .container-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  overflow-y: scroll;
 }
 
 .list::-webkit-scrollbar {
