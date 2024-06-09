@@ -18,17 +18,17 @@ const props = defineProps<Props>();
 const handleSubmitForm = async (post: IPost) => {
   isLoading.value = true;
   store.updatePost(post);
-  // isLoading.value = false;
-  // modal.value = false;
+  isLoading.value = false;
+  modal.value = false;
 };
 </script>
 
 <template>
   <v-dialog v-model="modal" max-width="500" width="fit-content" max-height="700" overflow-auto>
-    <template v-slot:activator="{ props: activatorProps }">
+    <template #activator="{ props: activatorProps }">
       <v-btn v-bind="activatorProps" density="comfortable" variant="plain" icon="fas fa-pen" size="small"></v-btn>
     </template>
-    <template v-slot:default>
+    <template #default>
       <div class="position-relative">
         <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2" @click="modal = false"
           style="z-index: 1" />

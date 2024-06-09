@@ -8,7 +8,7 @@ interface Props {
   loading: boolean;
 }
 
-//rename file form post
+
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
