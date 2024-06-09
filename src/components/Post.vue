@@ -1,14 +1,14 @@
 <script setup lang="ts">
-interface Props {
-  post: {
-    userId: number;
-    id: number;
-    title: string;
-    body: string;
-  };
-}
+  interface Props {
+    post: {
+      userId: number;
+      id: number;
+      title: string;
+      body: string;
+    };
+  }
 
-const props = defineProps<Props>();
+  const props = defineProps<Props>();
 </script>
 
 <template>

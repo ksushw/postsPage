@@ -1,13 +1,13 @@
 <script setup lang="ts">
-interface Props {
-  id: number;
-}
-const props = defineProps<Props>();
+  interface Props {
+    id: number;
+  }
+  const props = defineProps<Props>();
 
-const emit = defineEmits<{
-  (e: 'submit', id: number): void;
-  (e: 'cancel'): void;
-}>();
+  const emit = defineEmits<{
+    (e: 'submit', id: number): void;
+    (e: 'cancel'): void;
+  }>();
 </script>
 
 <template>
@@ -16,10 +16,16 @@ const emit = defineEmits<{
       <v-form fast-fail @submit.prevent class="pa-5">
         <div class="text-h6">Вы действительно хотите удалить пост?</div>
         <div class="d-lg-flex justify-space-around ga-3">
-          <v-btn class="mt-2 flex-1-1-100" type="submit" @click="$emit('cancel')">
+          <v-btn
+            class="mt-2 flex-1-1-100"
+            type="submit"
+            @click="$emit('cancel')">
             Отмена
           </v-btn>
-          <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" @click="$emit('submit', props.id)">
+          <v-btn
+            class="mt-2 flex-1-1-100 bg-red-darken-2"
+            type="submit"
+            @click="$emit('submit', props.id)">
             Удалить
           </v-btn>
         </div>
