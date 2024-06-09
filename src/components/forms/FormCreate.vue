@@ -18,7 +18,7 @@ const emit = defineEmits<{
 const isDisabled = computed(() => {
   return props.loading ? 'disabled' : ''
 })
-//single teg for templates optionaly
+
 const title = ref(props.post.title);
 const text = ref(props.post.body);
 </script>

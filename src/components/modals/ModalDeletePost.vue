@@ -12,14 +12,14 @@ const props = defineProps<Props>();
 const modal = ref(false);
 const isLoading = ref(false);
 
-const handleSubmitForm = async (id: number, isActive: any) => {
+const handleSubmitForm = async (id: number) => {
   isLoading.value = true;
   store.deletePost(id);
   isLoading.value = false;
-  modal.value = false;
+  close();
 };
 
-const cancelForm = (isActive: any) => {
+const close = () => {
   modal.value = false;
 };
 </script>
@@ -29,12 +29,11 @@ const cancelForm = (isActive: any) => {
     <template #activator="{ props: activatorProps }">
       <v-btn v-bind="activatorProps" density="comfortable" variant="plain" icon="fas fa-trash" size="small" />
     </template>
-    <template #default="{ isActive }">
+    <template #default>
       <div class="position-relative">
-        <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2"
-          @click="isActive.value = false" style="z-index: 1" />
-        <FormDelete :id="props.id" @submit="(id) => handleSubmitForm(id, isActive)" @cancel="() => cancelForm(isActive)"
-          :loading="isLoading" />
+        <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2" @click="close"
+          style="z-index: 1" />
+        <FormDelete :id="props.id" @submit="(id) => handleSubmitForm(id)" @cancel="close" :loading="isLoading" />
       </div>
     </template>
   </v-dialog>
