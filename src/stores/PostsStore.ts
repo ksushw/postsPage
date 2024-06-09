@@ -1,33 +1,38 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { IPost } from '../types/post';
+import api from '../api/postApi';
 
 const usePostsStore = defineStore('posts', () => {
   const posts = ref<IPost[]>([]);
 
-  const setPosts = (newPosts: IPost[]) => {
-    posts.value = newPosts;
+  const setPosts = async () => {
+    const postsData = await api.getPosts();
+    posts.value = postsData;
   };
 
-  const addPost = (newPost: IPost) => {
+  const createPost = async (post: IPost) => {
+    const newPost = await api.createPost(post);
     posts.value = [...posts.value, newPost];
   };
 
-  const updatePost = (newPost: IPost) => {
+  const updatePost = async (post: IPost) => {
+    const responce = await api.updatePost(post);
     posts.value = [...posts.value].map((post) => {
-      if (post.id === newPost.id) {
-        return newPost;
+      if (post.id === responce.id) {
+        return responce;
       }
       return post;
     });
   };
 
-  const deletePost = (id: number) => {
+  const deletePost = async (id: number) => {
+    await api.deletePost(id);
     const newPosts = [...posts.value].filter((post) => post.id !== id);
     posts.value = newPosts;
   };
 
-  return { posts, setPosts, addPost, deletePost, updatePost };
+  return { posts, setPosts, createPost, deletePost, updatePost };
 });
 
 export { usePostsStore };

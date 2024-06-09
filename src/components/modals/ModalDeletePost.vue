@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import FormDeletePost from '../forms/FormDeletePost.vue';
-import { deletePost } from '../../api/postApi';
-
 import { usePostsStore } from '../../stores/postsStore';
 
 const store = usePostsStore();
@@ -12,7 +10,6 @@ interface Props {
 const props = defineProps<Props>();
 
 const handleSubmitForm = async (id: number, isActive: any) => {
-  const result = await deletePost(id);
   store.deletePost(id);
   isActive.value = false;
 };

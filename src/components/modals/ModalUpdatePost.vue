@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import FormCreatePost from '../forms/FormCreatePost.vue'
-import { updatePost } from '../../api/postApi';
 import { IPost } from '../../types/post';
-import { ref } from 'vue';
 import { usePostsStore } from '../../stores/postsStore';
 
 const store = usePostsStore();
@@ -12,13 +10,8 @@ interface Props {
 }
 const props = defineProps<Props>();
 
-const postData = ref(props.post);
-
-
 const handleSubmitForm = async (post: IPost, isActive: any) => {
-  const newPostData = await updatePost(post);
-  postData.value = newPostData;
-  store.updatePost(newPostData);
+  store.updatePost(post);
   isActive.value = false;
 };
 </script>

@@ -4,14 +4,12 @@ import { onMounted } from 'vue';
 import UpdatePost from './modals/ModalUpdatePost.vue';
 import CreatePost from './modals/ModalCreatePost.vue';
 import DeletePost from './modals/ModalDeletePost.vue';
-import { getPosts } from '../api/postApi';
 import { usePostsStore } from '../stores/postsStore.ts';
 
 const store = usePostsStore();
 
 onMounted(async () => {
-  const postsData = await getPosts();
-  store.setPosts(postsData);
+  store.setPosts();
 });
 
 const postTemplate = {

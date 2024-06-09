@@ -2,7 +2,6 @@
 import { ref } from 'vue';
 import { IPost } from '../../types/post';
 import FormCreatePost from '../forms/FormCreatePost.vue';
-import { createPost } from '../../api/postApi';
 import { usePostsStore } from '../../stores/postsStore';
 
 const store = usePostsStore();
@@ -15,8 +14,7 @@ const props = defineProps<Props>();
 const postData = ref(props.post);
 
 const handleSubmitForm = async (post: IPost, isActive: any) => {
-  const newPost = await createPost(post);
-  store.addPost(newPost)
+  store.createPost(post)
   isActive.value = false;
 };
 </script>

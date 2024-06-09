@@ -41,4 +41,4 @@ const deletePost = async (id: number): Promise<{}> => {
   });
 };
 
-export { createPost, getPosts, updatePost, deletePost };
+export default   { createPost, getPosts, updatePost, deletePost };
