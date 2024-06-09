@@ -10,18 +10,19 @@ interface Props {
 const store = usePostsStore();
 const props = defineProps<Props>();
 const postData = ref(props.post);
+const modal = ref(false);
 const isLoading = ref(false);
 
 const handleSubmitForm = async (post: IPost, isActive: any) => {
   isLoading.value = true;
   await store.createPost(post);
   isLoading.value = false;
-  isActive.value = false;
+  modal.value = false;
 };
 </script>
 
 <template>
-  <v-dialog max-width="500" width="fit-content" max-height="700" overflow-auto>
+  <v-dialog v-model="modal" max-width="500" width="fit-content" max-height="700" overflow-auto>
     <template #activator="{ props: activatorProps }">
       <v-btn v-bind="activatorProps" variant="tonal" text="Создать пост" class="bg-cyan-darken-1"></v-btn>
     </template>

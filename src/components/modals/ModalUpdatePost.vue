@@ -13,8 +13,7 @@ const modal = ref(false);
 const isLoading = ref(false);
 
 const props = defineProps<Props>();
-// modal close by v-model
-// Заменить везде v-slot на #
+
 const handleSubmitForm = async (post: IPost) => {
   isLoading.value = true;
   store.updatePost(post);
