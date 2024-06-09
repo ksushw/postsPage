@@ -10,7 +10,7 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  submit: [post: IPost];
+  (e: 'submit', post: IPost): void
 }>();
 
 const title = ref(props.post.title);

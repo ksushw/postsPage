@@ -13,7 +13,11 @@ const props = defineProps<Props>();
 
 const handleSubmitForm = async (id: number, isActive: any) => {
   const result = await deletePost(id);
-  store.deletePost(id)
+  store.deletePost(id);
+  isActive.value = false;
+};
+
+const cancelForm = (isActive: any) => {
   isActive.value = false;
 };
 </script>
@@ -27,7 +31,8 @@ const handleSubmitForm = async (id: number, isActive: any) => {
       <div class="position-relative">
         <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 ma-2"
           @click="isActive.value = false" style="z-index: 1" />
-        <FormDeletePost :id="props.id" @submit="(id) => handleSubmitForm(id, isActive)" />
+        <FormDeletePost :id="props.id" @submit="(id) => handleSubmitForm(id, isActive)"
+          @cancel="(i) => cancelForm(isActive)" />
       </div>
     </template>
   </v-dialog>

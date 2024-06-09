@@ -5,7 +5,8 @@ interface Props {
 const props = defineProps<Props>();
 
 const emit = defineEmits<{
-  submit: [id: number];
+  (e: 'submit', id: number): void
+  (e: 'cancel'): void
 }>();
 </script>
 
@@ -15,7 +16,7 @@ const emit = defineEmits<{
       <v-form fast-fail @submit.prevent class="pa-5">
         <div class="text-h6">Вы действительно хотите удалить пост?</div>
         <div class="d-lg-flex justify-space-around ga-3">
-          <v-btn class="mt-2 flex-1-1-100" type="submit" @click="">
+          <v-btn class="mt-2 flex-1-1-100" type="submit" @click="$emit('cancel')">
             Отмена
           </v-btn>
           <v-btn class="mt-2 flex-1-1-100 bg-red-darken-2" type="submit" @click="$emit('submit', props.id)">
