@@ -11,7 +11,7 @@ const store = usePostsStore();
 
 onMounted(async () => {
   const postsData = await getPosts();
-  store.addPosts(postsData);
+  store.setPosts(postsData);
 });
 
 const postTemplate = {

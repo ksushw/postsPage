@@ -5,15 +5,15 @@ import { IPost } from '../types/post';
 const usePostsStore = defineStore('posts', () => {
   const posts = ref<IPost[]>([]);
 
-  const addPosts = (newPosts: IPost[]) => {
+  const setPosts = (newPosts: IPost[]) => {
     posts.value = newPosts;
   };
 
-  const putPost = (newPost: IPost) => {
+  const addPost = (newPost: IPost) => {
     posts.value = [...posts.value, newPost];
   };
 
-  const patch = (newPost: IPost) => {
+  const updatePost = (newPost: IPost) => {
     posts.value = [...posts.value].map((post) => {
       if (post.id === newPost.id) {
         return newPost;
@@ -27,7 +27,7 @@ const usePostsStore = defineStore('posts', () => {
     posts.value = newPosts;
   };
 
-  return { posts, addPosts, putPost, deletePost, patch };
+  return { posts, setPosts, addPost, deletePost, updatePost };
 });
 
 export { usePostsStore };

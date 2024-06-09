@@ -18,7 +18,7 @@ const postData = ref(props.post);
 const handleSubmitForm = async (post: IPost, isActive: any) => {
   const newPostData = await updatePost(post);
   postData.value = newPostData;
-  store.patch(newPostData);
+  store.updatePost(newPostData);
   isActive.value = false;
 };
 </script>

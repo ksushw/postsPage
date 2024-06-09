@@ -1,4 +1,3 @@
-import { AxiosResponse } from 'axios';
 import { instance } from './axios';
 import { IPost } from '../types/post';
 
