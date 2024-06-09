@@ -19,7 +19,7 @@ const getPosts = async (): Promise<IPost[]> => {
     .then(function (response) {
       return response.data;
     })
-    .catch(function (error) {
+    .catch(function () {
       return [];
     });
 };
@@ -41,4 +41,4 @@ const deletePost = async (id: number): Promise<{}> => {
   });
 };
 
-export default   { createPost, getPosts, updatePost, deletePost };
+export default { createPost, getPosts, updatePost, deletePost };

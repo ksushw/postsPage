@@ -1,18 +1,19 @@
 <script setup lang="ts">
-  interface Props {
-    post: {
-      userId: number;
-      id: number;
-      title: string;
-      body: string;
-    };
-  }
+interface Props {
+  post: {
+    userId: number;
+    id: number;
+    title: string;
+    body: string;
+  };
+  index: number
+}
 
-  const props = defineProps<Props>();
+const props = defineProps<Props>();
 </script>
 
 <template>
-  <v-card :title="props.post.title" min-height="300">
+  <v-card :title="props.index + 1 + '. ' + props.post.title" min-height="100" variant="outlined">
     <template #text>
       <div class="mt-2">
         {{ props.post.body }}
