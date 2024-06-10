@@ -6,7 +6,7 @@
 
   interface Props {
     post: IPost;
-    buttonDisable: boolean;
+    buttonDisable: string;
   }
 
   const store = usePostsStore();
