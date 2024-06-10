@@ -5,10 +5,13 @@ import api from '../api/postApi';
 
 const usePostsStore = defineStore('posts', () => {
   const posts = ref<IPost[]>([]);
+  const isLoading = ref<boolean>(true);
 
   const getPosts = async () => {
+    isLoading.value = true;
     const postsData = await api.getPosts();
     posts.value = postsData.reverse();
+    isLoading.value = false;
   };
 
   const createPost = async (post: IPost) => {
@@ -32,7 +35,7 @@ const usePostsStore = defineStore('posts', () => {
     posts.value = newPosts;
   };
 
-  return { posts, getPosts, createPost, deletePost, updatePost };
+  return { posts, getPosts, createPost, deletePost, updatePost, isLoading };
 });
 
 export { usePostsStore };

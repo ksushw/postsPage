@@ -6,6 +6,7 @@ import { usePostsStore } from '../../stores/postsStore';
 
 interface Props {
   post: IPost;
+  buttonDisable: boolean;
 }
 const store = usePostsStore();
 const props = defineProps<Props>();
@@ -28,7 +29,7 @@ const close = () => {
 <template>
   <v-dialog v-model="modal" max-width="500" width="fit-content" max-height="700" overflow-auto>
     <template #activator="{ props: activatorProps }">
-      <v-btn v-bind="activatorProps" variant="tonal" text="Создать пост" class="bg-cyan-darken-1"></v-btn>
+      <v-btn v-bind="activatorProps" variant="tonal" text="Создать пост" class="bg-cyan-darken-1" buttonDisable></v-btn>
     </template>
     <template #default>
       <div class="position-relative">

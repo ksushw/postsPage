@@ -6,6 +6,7 @@ interface Props {
   formName: string;
   buttonText: string;
   loading: boolean;
+ 
 }
 
 
@@ -28,7 +29,7 @@ const text = ref(props.post.body);
     <v-sheet class="mx-auto" width="400">
       <v-form fast-fail @submit.prevent class="pa-5">
         <v-text-field v-model="title" label="Добавьте заголовок" />
-        <v-textarea v-model="text" label="Добавьте текст поста" maxlength="200" variant="underlined" counter
+        <v-textarea v-model="text" label="Добавьте текст поста" maxlength="200" variant="outlined" counter
           single-line />
         <v-btn class="mt-2 bg-cyan-darken-2" type="submit" :loading="loading" isDisabled
           @click="$emit('submit', { ...post, title: title, body: text })" block>
