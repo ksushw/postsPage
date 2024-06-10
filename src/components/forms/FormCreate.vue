@@ -1,27 +1,26 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
-import { IPost } from '../../types/post';
-interface Props {
-  post: IPost;
-  formName: string;
-  buttonText: string;
-  loading: boolean;
- 
-}
+  import { ref, computed } from 'vue';
+  import { IPost } from '../../types/post';
 
+  interface Props {
+    post: IPost;
+    formName: string;
+    buttonText: string;
+    loading: boolean;
+  }
 
-const props = defineProps<Props>();
+  const props = defineProps<Props>();
 
-const emit = defineEmits<{
-  (e: 'submit', post: IPost): void;
-}>();
+  const emit = defineEmits<{
+    (e: 'submit', post: IPost): void;
+  }>();
 
-const isDisabled = computed(() => {
-  return props.loading ? 'disabled' : ''
-})
+  const title = ref(props.post.title);
+  const text = ref(props.post.body);
 
-const title = ref(props.post.title);
-const text = ref(props.post.body);
+  const isDisabled = computed(() => {
+    return props.loading ? 'disabled' : '';
+  });
 </script>
 
 <template>
@@ -29,10 +28,20 @@ const text = ref(props.post.body);
     <v-sheet class="mx-auto" width="400">
       <v-form fast-fail @submit.prevent class="pa-5">
         <v-text-field v-model="title" label="Добавьте заголовок" />
-        <v-textarea v-model="text" label="Добавьте текст поста" maxlength="200" variant="outlined" counter
+        <v-textarea
+          v-model="text"
+          label="Добавьте текст поста"
+          maxlength="200"
+          variant="outlined"
+          counter
           single-line />
-        <v-btn class="mt-2 bg-cyan-darken-2" type="submit" :loading="loading" isDisabled
-          @click="$emit('submit', { ...post, title: title, body: text })" block>
+        <v-btn
+          class="mt-2 bg-cyan-darken-2"
+          type="submit"
+          :loading="loading"
+          isDisabled
+          @click="$emit('submit', { ...post, title: title, body: text })"
+          block>
           {{ props.buttonText }}
         </v-btn>
       </v-form>
