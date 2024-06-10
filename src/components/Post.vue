@@ -6,7 +6,6 @@
       title: string;
       body: string;
     };
-    index: number;
   }
 
   const props = defineProps<Props>();
@@ -14,7 +13,8 @@
 
 <template>
   <v-card
-    :title="props.index + 1 + '. ' + props.post.title"
+    style="width: 954px"
+    :title="props.post.title"
     min-height="100"
     variant="outlined">
     <template #text>

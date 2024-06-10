@@ -5,13 +5,10 @@ import api from '../api/postApi';
 
 const usePostsStore = defineStore('posts', () => {
   const posts = ref<IPost[]>([]);
-  const isLoading = ref<boolean>(true);
 
   const getPosts = async () => {
-    isLoading.value = true;
     const postsData = await api.getPosts();
     posts.value = postsData.reverse();
-    isLoading.value = false;
   };
 
   const createPost = async (post: IPost) => {
@@ -19,23 +16,20 @@ const usePostsStore = defineStore('posts', () => {
     posts.value = [newPost, ...posts.value];
   };
 
-  const updatePost = async (post: IPost) => {
-    const response = await api.updatePost(post);
-    posts.value = [...posts.value].map((post) => {
-      if (post.id === response.id) {
-        return response;
-      }
-      return post;
-    });
+  const updatePost = async (newPost: IPost) => {
+    const response = await api.updatePost(newPost);
+
+    const index = posts.value.findIndex((item) => item.id === newPost.id);
+    posts.value[index] = response;
   };
 
   const deletePost = async (id: number) => {
     await api.deletePost(id);
-    const newPosts = [...posts.value].filter((post) => post.id !== id);
-    posts.value = newPosts;
+    const index = posts.value.findIndex((item) => item.id === id);
+    posts.value.splice(index, 1);
   };
 
-  return { posts, getPosts, createPost, deletePost, updatePost, isLoading };
+  return { posts, getPosts, createPost, deletePost, updatePost };
 });
 
 export { usePostsStore };

@@ -6,7 +6,7 @@
 
   interface Props {
     post: IPost;
-    buttonDisable: string;
+    buttonDisable: boolean;
   }
 
   const store = usePostsStore();
@@ -40,7 +40,7 @@
         variant="tonal"
         text="Создать пост"
         class="bg-cyan-darken-1"
-        buttonDisable />
+        :disabled="buttonDisable" />
     </template>
     <template #default>
       <div class="position-relative">

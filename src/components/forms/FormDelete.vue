@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
-
   interface Props {
     id: number;
     loading: boolean;
@@ -12,10 +10,6 @@
     (e: 'submit', id: number): void;
     (e: 'cancel'): void;
   }>();
-
-  const isDisabled = computed(() => {
-    return props.loading ? 'disabled' : '';
-  });
 </script>
 
 <template>
@@ -28,14 +22,14 @@
             class="mt-2 flex-1-1-100"
             type="submit"
             @click="$emit('cancel')"
-            isDisabled>
+            :disabled="props.loading">
             Отмена
           </v-btn>
           <v-btn
             class="mt-2 flex-1-1-100 bg-red-darken-2"
             type="submit"
             :loading="loading"
-            isDisabled
+            :disabled="props.loading"
             @click="$emit('submit', props.id)">
             Удалить
           </v-btn>

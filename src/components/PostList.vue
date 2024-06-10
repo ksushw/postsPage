@@ -1,7 +1,6 @@
 <script setup lang="ts">
-  import { computed } from 'vue';
   import Post from './Post.vue';
-  import { onMounted } from 'vue';
+  import { onMounted, ref } from 'vue';
   import UpdatePost from './modals/ModalUpdatePost.vue';
   import CreatePost from './modals/ModalCreatePost.vue';
   import DeletePost from './modals/ModalDeletePost.vue';
@@ -11,23 +10,22 @@
     userId: 1,
     title: '',
     body: '',
-    id: 1,
+    id: 101,
   };
 
+  const isLoading = ref(true);
   const store = usePostsStore();
-  onMounted(async () => {
-    store.getPosts();
-  });
 
-  const isDisabled = computed(() => {
-    return store.isLoading ? 'disabled' : '';
+  onMounted(async () => {
+    await store.getPosts();
+    isLoading.value = false;
   });
 </script>
 
 <template>
   <v-card class="h-75">
     <div class="d-flex justify-end pa-5">
-      <CreatePost :post="postTemplate" :buttonDisable="isDisabled" />
+      <CreatePost :post="postTemplate" :buttonDisable="isLoading" />
     </div>
     <v-list
       lines="one"
@@ -35,23 +33,24 @@
       class="list pt-17 pr-3 pl-3"
       width="988"
       style="height: calc(100% - 76px)">
-      <v-skeleton-loader
-        v-for="n in 5"
-        type="subtitle, paragraph"
-        class="mb-4 w-100"
-        :loading="store.isLoading">
-        <Post
-          v-for="(post, index) in store.posts"
-          :post="post"
-          :index="index"
-          :key="post.id"
-          class="mb-4 w-100">
-          <template #controllerButtons>
-            <UpdatePost :post="post" />
-            <DeletePost :id="post.id" />
-          </template>
-        </Post>
-      </v-skeleton-loader>
+      <div v-if="isLoading">
+        <v-skeleton-loader
+          v-for="n in 5"
+          :key="n"
+          type="subtitle, paragraph"
+          class="mb-4 w-100"
+          :loading="isLoading"/>
+      </div>
+      <Post
+        v-for="post in store.posts"
+        :post="post"
+        :key="post.id"
+        class="mb-4">
+        <template #controllerButtons>
+          <UpdatePost :post="post" />
+          <DeletePost :id="post.id" />
+        </template>
+      </Post>
     </v-list>
   </v-card>
 </template>
