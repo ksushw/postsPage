@@ -28,7 +28,13 @@ const close = () => {
 </script>
 
 <template>
-  <v-dialog v-model="isModalOpen" max-width="500" width="fit-content" max-height="700" overflow-auto>
+  <v-dialog
+    v-model="isModalOpen"
+    max-width="500"
+    width="fit-content"
+    max-height="700"
+    overflow-auto
+  >
     <template #activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"
@@ -52,7 +58,7 @@ const close = () => {
           :post="postData"
           buttonText="Создать"
           :loading="isLoading"
-          @submit="(post) => handleSubmitForm(post)"
+          @submit="handleSubmitForm"
         />
       </div>
     </template>

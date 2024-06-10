@@ -27,9 +27,21 @@ onMounted(async () => {
     <div class="d-flex justify-end pa-5">
       <CreatePost :post="postTemplate" :buttonDisable="isLoading" />
     </div>
-    <v-list lines="one" overflow-auto class="list pt-17 pr-3 pl-3" width="988" style="height: calc(100% - 76px)">
+    <v-list
+      lines="one"
+      overflow-auto
+      class="list pt-17 pr-3 pl-3"
+      width="988"
+      style="height: calc(100% - 76px)"
+    >
       <div v-if="isLoading">
-        <v-skeleton-loader v-for="n in 5" :key="n" type="subtitle, paragraph" class="mb-4 w-100" :loading="isLoading" />
+        <v-skeleton-loader
+          v-for="n in 5"
+          :key="n"
+          type="subtitle, paragraph"
+          class="mb-4 w-100"
+          :loading="isLoading" 
+        />
       </div>
       <Post v-for="post in store.posts" :post="post" :key="post.id" class="mb-4">
         <template #controllerButtons>

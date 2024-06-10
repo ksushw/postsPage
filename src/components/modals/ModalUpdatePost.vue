@@ -23,7 +23,13 @@ const handleSubmitForm = async (post: IPost) => {
 </script>
 
 <template>
-  <v-dialog v-model="isModalOpen" max-width="500" width="fit-content" max-height="700" overflow-auto>
+  <v-dialog
+    v-model="isModalOpen"
+    max-width="500"
+    width="fit-content"
+    max-height="700"
+    overflow-auto
+  >
     <template #activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"
@@ -39,7 +45,8 @@ const handleSubmitForm = async (post: IPost) => {
           density="default"
           icon="fas fa-xmark"
           class="position-absolute top-0 right-0 mr-6 mt-3"
-          @click="isModalOpen = false" style="z-index: 1"
+          style="z-index: 1"
+          @click="isModalOpen = false"
         />
         <FormCreate
           formName="Редактировать пост"

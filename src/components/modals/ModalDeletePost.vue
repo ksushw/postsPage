@@ -25,7 +25,13 @@ const close = () => {
 </script>
 
 <template>
-  <v-dialog v-model="isModalOpen" max-width="500" width="fit-content" max-height="700" overflow-auto>
+  <v-dialog
+    v-model="isModalOpen"
+    max-width="500"
+    width="fit-content"
+    max-height="700"
+    overflow-auto
+  >
     <template #activator="{ props: activatorProps }">
       <v-btn
         v-bind="activatorProps"
@@ -45,8 +51,8 @@ const close = () => {
           @click="close"
         />
         <FormDelete
-         :id="props.id"
-         :loading="isLoading"
+          :id="props.id"
+          :loading="isLoading"
           @submit="handleSubmitForm"
           @cancel="close"
         />
