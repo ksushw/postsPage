@@ -11,22 +11,20 @@
   const props = defineProps<Props>();
 
   const store = usePostsStore();
-
-  const modal = ref(false);
+  const isModalOpen = ref(false);
   const isLoading = ref(false);
-
 
   const handleSubmitForm = async (post: IPost) => {
     isLoading.value = true;
-    store.updatePost(post);
+    await store.updatePost(post);
     isLoading.value = false;
-    modal.value = false;
+    isModalOpen.value = false;
   };
 </script>
 
 <template>
   <v-dialog
-    v-model="modal"
+    v-model="isModalOpen"
     max-width="500"
     width="fit-content"
     max-height="700"
@@ -45,7 +43,7 @@
           density="default"
           icon="fas fa-xmark"
           class="position-absolute top-0 right-0 mr-6 mt-3"
-          @click="modal = false"
+          @click="isModalOpen = false"
           style="z-index: 1" />
         <FormCreate
           formName="Редактировать пост"

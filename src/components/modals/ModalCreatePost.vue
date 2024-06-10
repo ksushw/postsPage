@@ -12,24 +12,24 @@
   const store = usePostsStore();
   const props = defineProps<Props>();
   const postData = ref(props.post);
-  const modal = ref(false);
+  const isModalOpen = ref(false);
   const isLoading = ref(false);
 
   const handleSubmitForm = async (post: IPost) => {
     isLoading.value = true;
     await store.createPost(post);
     isLoading.value = false;
-    modal.value = false;
+    isModalOpen.value = false;
   };
 
   const close = () => {
-    modal.value = false;
+    isModalOpen.value = false;
   };
 </script>
 
 <template>
   <v-dialog
-    v-model="modal"
+    v-model="isModalOpen"
     max-width="500"
     width="fit-content"
     max-height="700"

@@ -21,7 +21,7 @@
           <v-btn
             class="mt-2 flex-1-1-100"
             type="submit"
-            @click="$emit('cancel')"
+            @click="emit('cancel')"
             :disabled="props.loading">
             Отмена
           </v-btn>
@@ -30,7 +30,7 @@
             type="submit"
             :loading="loading"
             :disabled="props.loading"
-            @click="$emit('submit', props.id)">
+            @click="emit('submit', props.id)">
             Удалить
           </v-btn>
         </div>

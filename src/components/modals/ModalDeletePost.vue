@@ -9,7 +9,7 @@
 
   const store = usePostsStore();
   const props = defineProps<Props>();
-  const modal = ref(false);
+  const isModalOpen = ref(false);
   const isLoading = ref(false);
 
   const handleSubmitForm = async (id: number) => {
@@ -20,13 +20,13 @@
   };
 
   const close = () => {
-    modal.value = false;
+    isModalOpen.value = false;
   };
 </script>
 
 <template>
   <v-dialog
-    v-model="modal"
+    v-model="isModalOpen"
     max-width="500"
     width="fit-content"
     max-height="700"
