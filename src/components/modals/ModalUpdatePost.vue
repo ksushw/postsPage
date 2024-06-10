@@ -25,14 +25,29 @@ const handleSubmitForm = async (post: IPost) => {
 <template>
   <v-dialog v-model="isModalOpen" max-width="500" width="fit-content" max-height="700" overflow-auto>
     <template #activator="{ props: activatorProps }">
-      <v-btn v-bind="activatorProps" density="comfortable" variant="plain" icon="fas fa-pen" size="small" />
+      <v-btn
+        v-bind="activatorProps"
+        density="comfortable"
+        variant="plain"
+        icon="fas fa-pen"
+        size="small"
+      />
     </template>
     <template #default>
       <div class="position-relative">
-        <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 mr-6 mt-3"
-          @click="isModalOpen = false" style="z-index: 1" />
-        <FormCreate formName="Редактировать пост" :post="props.post" buttonText="Изменить" :loading="isLoading"
-          @submit="(post) => handleSubmitForm(post)" />
+        <v-btn
+          density="default"
+          icon="fas fa-xmark"
+          class="position-absolute top-0 right-0 mr-6 mt-3"
+          @click="isModalOpen = false" style="z-index: 1"
+        />
+        <FormCreate
+          formName="Редактировать пост"
+          :post="props.post"
+          buttonText="Изменить"
+          :loading="isLoading"
+          @submit="handleSubmitForm"
+        />
       </div>
     </template>
   </v-dialog>

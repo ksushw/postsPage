@@ -30,15 +30,30 @@ const close = () => {
 <template>
   <v-dialog v-model="isModalOpen" max-width="500" width="fit-content" max-height="700" overflow-auto>
     <template #activator="{ props: activatorProps }">
-      <v-btn v-bind="activatorProps" variant="tonal" text="Создать пост" class="bg-cyan-darken-1"
-        :disabled="buttonDisable" />
+      <v-btn
+        v-bind="activatorProps"
+        variant="tonal"
+        text="Создать пост"
+        class="bg-cyan-darken-1"
+        :disabled="buttonDisable"
+      />
     </template>
     <template #default>
       <div class="position-relative">
-        <v-btn density="default" icon="fas fa-xmark" class="position-absolute top-0 right-0 mr-6 mt-3" @click="close"
-          style="z-index: 1" />
-        <FormCreate formName="Создать пост" :post="postData" buttonText="Создать" :loading="isLoading"
-          @submit="(post) => handleSubmitForm(post)" />
+        <v-btn
+          density="default"
+          icon="fas fa-xmark"
+          class="position-absolute top-0 right-0 mr-6 mt-3"
+          style="z-index: 1"
+          @click="close"
+        />
+        <FormCreate
+          formName="Создать пост"
+          :post="postData"
+          buttonText="Создать"
+          :loading="isLoading"
+          @submit="(post) => handleSubmitForm(post)"
+        />
       </div>
     </template>
   </v-dialog>

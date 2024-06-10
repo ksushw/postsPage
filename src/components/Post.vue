@@ -16,7 +16,8 @@
     style="width: 954px"
     :title="props.post.title"
     min-height="100"
-    variant="outlined">
+    variant="outlined"
+  >
     <template #text>
       <div class="mt-2">
         {{ props.post.body }}

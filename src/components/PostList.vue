@@ -42,11 +42,6 @@ onMounted(async () => {
 </template>
 
 <style>
-.container-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-
 .list {
   overflow-y: scroll;
 }
